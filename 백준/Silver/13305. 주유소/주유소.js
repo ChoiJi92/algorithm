@@ -8,22 +8,12 @@ const N = +input.shift();
 
 const [K, P] = input.map((v) => v.split(" ").map(Number));
 
-const newP = P.slice(0, P.length - 1);
-let sum = 0;
-while (newP.length > 1) {
-  const current = newP.shift();
-  const index = newP.findIndex((v) => v < current);
-  if (index === -1) {
-    sum += current * K.reduce((acc, cur) => acc + cur, 0);
-    break;
-  } else {
-    let KSum = 0;
-    for (let i = 0; i < index + 1; i++) {
-      KSum += K[i];
-    }
-    sum += current * KSum;
-    K.shift();
-  }
+let sum = BigInt(0);
+let current = BigInt(P[0]);
+for (let i = 0; i < N - 1; i++) {
+  sum += current * BigInt(K[i]);
+  if (current > P[i + 1]) current = BigInt(P[i + 1]);
 }
 
-console.log(sum);
+console.log(sum.toString());
+

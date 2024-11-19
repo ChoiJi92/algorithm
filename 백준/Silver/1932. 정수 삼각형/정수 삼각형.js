@@ -10,12 +10,7 @@ const array = input.map((v) => v.split(" ").map(Number));
 
 if (N === 1) return console.log(array[0][0]);
 
-array[1][0] = array[0][0] + array[1][0];
-array[1][1] = array[0][0] + array[1][1];
-
-if (N === 2) return console.log(Math.max(array[1][0], array[1][1]));
-
-for (let i = 2; i < N; i++) {
+for (let i = 1; i < N; i++) {
   for (let j = 0; j < array[i].length; j++) {
     if (j === 0 || j === array[i].length - 1) {
       if (j === 0) {
